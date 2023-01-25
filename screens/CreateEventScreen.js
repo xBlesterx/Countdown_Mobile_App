@@ -45,9 +45,6 @@ const CreateEvent = () => {
   const event = useSelector(selectevent);
   const navigation = useNavigation();
 
-  console.log(selectedDate);
-  console.log(dateDiffereance);
-
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -142,20 +139,25 @@ const CreateEvent = () => {
           <TouchableOpacity
             onPress={() => {
               const dayTimeDifferance = findDateTimeDifference();
-              dispatch(
-                setevent({
-                  id: event.length,
-                  title: inputTitle,
-                  date: selectedDate,
-                  dayDifference: dayTimeDifferance.dayDifference,
-                  randomColors1: randomColors1,
-                  randomColors2: randomColors2,
-                  hourDifference: dayTimeDifferance.hourDifference,
-                  minuteDifference: dayTimeDifferance.minuteDifference,
-                  secondDifference: dayTimeDifferance.secondDifference,
-                })
-              );
-              navigation.navigate("Home");
+              if (!isNaN(dayTimeDifferance.dayDifference) && inputTitle != "") {
+                dispatch(
+                  setevent({
+                    id: event.length,
+                    title: inputTitle,
+                    date: selectedDate,
+                    dayDifference: dayTimeDifferance.dayDifference,
+                    randomColors1: randomColors1,
+                    randomColors2: randomColors2,
+                    hourDifference: dayTimeDifferance.hourDifference,
+                    minuteDifference: dayTimeDifferance.minuteDifference,
+                    secondDifference: dayTimeDifferance.secondDifference,
+                  })
+                );
+                navigation.navigate("Home");
+              } else
+                alert(
+                  "Please select a date after the current date and the title is not empty"
+                );
             }}
             style={{ backgroundColor: Randomcolor1 }}
             className="rounded-xl p-2 items-center  w-32"

@@ -13,7 +13,7 @@ const EventCards = ({
   secondDifference,
 }) => {
   return (
-    <View className="pt-3 relative hover:absolute mb-5">
+    <View className="pt-3 mb-5">
       <View className="p-3">
         <LinearGradient
           colors={[randomColors1, randomColors2]}
@@ -25,7 +25,7 @@ const EventCards = ({
             x: 1,
             y: 1,
           }}
-          className="p-3.5 rounded-lg h-28"
+          className="p-3.5 rounded-t-lg h-28"
         >
           <Text className="text-white font-extrabold text-4xl mb-1">
             {title}
